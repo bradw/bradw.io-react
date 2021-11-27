@@ -1,13 +1,26 @@
 import styled from 'styled-components'
 
 const Name = styled('h1')({
-  fontSize: '8rem',
+  fontSize: '30rem',
+  lineHeight: '22rem',
+  textAlign: 'left',
   '& > span': {
+    display: 'block',
+    fontSize: '6rem',
     fontWeight: 300,
+    marginLeft: '2rem',
+    lineHeight: '2rem',
+    color: 'var(--accent-color)',
   },
   '@media (orientation: portrait)': {
-    fontSize: '6rem',
-    marginBottom: 20,
+    fontSize: '16rem',
+    lineHeight: '12rem',
+    marginBottom: '5rem',
+    marginTop: '5rem',
+    '& > span': {
+      fontSize: '3rem',
+      marginLeft: '1rem',
+    },
   },
 })
 
@@ -35,7 +48,8 @@ const VerticalLine = styled('div')({
 
 const Links = styled('ul')({
   padding: 0,
-  width: 600,
+  width: '30vw',
+  maxWidth: 600,
   listStyleType: 'none',
   '@media (orientation: portrait)': {
     width: '80%',
@@ -69,24 +83,25 @@ const Link = styled('a')({
   },
 })
 
-const Icon = <i className="fas fa-external-link-alt" />
+const LinkIcon = <i className="fas fa-external-link-alt" />
+const EmailIcon = <i className="fas fa-envelope" />
 
 export const App = () => {
   const links = [
-    { name: 'GitHub', href: 'https://github.com/bradw' },
-    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/bradley-watton-83387a140' },
-    { name: 'CV / Resume', href: 'https://cv.bradw.io' },
+    { name: 'GitHub', href: 'https://github.com/bradw', Icon: LinkIcon },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/bradley-watton-83387a140', Icon: LinkIcon },
+    { name: 'CV / Resume', href: 'https://cv.bradw.io', Icon: LinkIcon },
+    { name: 'Send me an email', href: 'mailto:hi@bw.dev', Icon: EmailIcon },
   ]
 
   return (
     <Flex>
       <Name>
-        Bradley<br />
-        <span>Watton</span>
+        bw<span>.dev</span>
       </Name>
       <VerticalLine />
       <Links>
-        {links.map(({ name, href }) => (
+        {links.map(({ name, href, Icon }) => (
           <Link href={href} target="_blank">
             { name }
             { Icon }
