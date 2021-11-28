@@ -1,26 +1,10 @@
 import styled from 'styled-components'
 
-const Name = styled('h1')({
-  fontSize: '30rem',
-  lineHeight: '22rem',
-  textAlign: 'left',
-  '& > span': {
-    display: 'block',
-    fontSize: '6rem',
-    fontWeight: 300,
-    marginLeft: '2rem',
-    lineHeight: '2rem',
-    color: 'var(--accent-color)',
-  },
+const Logo = styled('img')({
+  width: '50vw',
+  maxWidth: 1000,
   '@media (orientation: portrait)': {
-    fontSize: '16rem',
-    lineHeight: '12rem',
-    marginBottom: '5rem',
-    marginTop: '5rem',
-    '& > span': {
-      fontSize: '3rem',
-      marginLeft: '1rem',
-    },
+    width: '75vw',
   },
 })
 
@@ -68,10 +52,17 @@ const Link = styled('a')({
   justifyContent: 'space-between',
   transition: 'all 250ms linear',
   fontSize: '1.2rem',
+  position: 'relative',
   '&:hover,&:active,&:focus': {
     backgroundColor: 'var(--text-color)',
     color: 'var(--main-color)',
     border: '2px solid var(--main-color)',
+  },
+  '& > span': {
+    color: 'var(--main-color)',
+    position: 'absolute',
+    bottom: 10,
+    left: 50,
   },
   '& + a': {
     marginTop: 50,
@@ -88,25 +79,30 @@ const EmailIcon = <i className="fas fa-envelope" />
 
 export const App = () => {
   const links = [
-    { name: 'GitHub', href: 'https://github.com/bradw', Icon: LinkIcon },
-    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/bradley-watton-83387a140', Icon: LinkIcon },
-    { name: 'CV / Resume', href: 'https://cv.bradw.io', Icon: LinkIcon },
-    { name: 'Send me an email', href: 'mailto:hi@bw.dev', Icon: EmailIcon },
+    { name: 'GitHub', href: 'https://github.com/bradw' },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/bradley-watton-83387a140' },
+    { name: 'CV / Resume', href: 'https://cv.bradw.io' },
   ]
 
   return (
     <Flex>
-      <Name>
+      {/* <Name>
         bw<span>.dev</span>
-      </Name>
+      </Name> */}
+      <Logo src="/img/bw.dev-transparent.png" />
       <VerticalLine />
       <Links>
-        {links.map(({ name, href, Icon }) => (
+        {links.map(({ name, href }) => (
           <Link href={href} target="_blank">
             { name }
-            { Icon }
+            { LinkIcon }
           </Link>
         ))}
+        <Link href="mailto:hi@bw.dev" target="_blank">
+            Send me an email
+            <span>...unless you're a recruiter.</span>
+            { EmailIcon }
+          </Link>
       </Links>
     </Flex>
   )
